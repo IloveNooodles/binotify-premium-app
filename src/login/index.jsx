@@ -1,39 +1,81 @@
 import React from "react";
-import { Form, Input } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
+import { connect } from "react-redux";
 
-import { LoginButton } from "./style";
+import { LoginButton, RegisterButton, LoginForm, LoginInput } from "./style";
+import { BlurredBackgroundImage } from "../common/components/components";
+import { login } from './action'
 
 
 class Login extends React.Component {
+    state = {
+        username: "",
+        password: "",
+    }
+
+    onClickLogin = () => {
+        console.log({ username: this.state.username, password: this.state.password });
+        this.props.loginFunction({ username: this.state.username, password: this.state.password })
+    }
+
+    onClickRegister = () => {
+        window.location.href = "/register";
+    }
+
     render() {
         return (
-            <Form>
-                <h3>Binotify</h3>
-                <Form.Field>
-                    <Input
-                        type="text"
-                        placeholder="Username"
-                        id="username"
-                        name="username"
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <Input
-                        type="password"
-                        placeholder="Password"
-                        id="password"
-                        name="password"
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <LoginButton type="submit">Log In</LoginButton>
-                </Form.Field>
-                <Form.Field>
-                    <LoginButton type="button">Register</LoginButton>
-                </Form.Field>
-            </Form>
+            <div>
+                <BlurredBackgroundImage src="/images/background.jpg"/>
+                <LoginForm>
+                    <h3 style={({
+                        'fontSize': '32px',
+                        'fontWeight': '500',
+                        'lineHeight': '42px',
+                        'textAlign': 'center'
+                        })}>Binotify Premium</h3>
+                    <Form.Field>
+                        <LoginInput
+                            type="text"
+                            placeholder="Username"
+                            id="username"
+                            name="username"
+                            value={this.state.username}
+                            onChange={(e) => this.setState({ username: e.target.value })}
+
+                        />
+                    </Form.Field>
+                    <Form.Field>
+                        <LoginInput
+                            type="password"
+                            placeholder="Password"
+                            id="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={(e) => this.setState({ password: e.target.value })}
+                        />
+                    </Form.Field>
+                    <Form.Field>
+                        <LoginButton type="button" onClick={this.onClickLogin}>Log In</LoginButton>
+                    </Form.Field>
+                    <Form.Field>
+                        <RegisterButton type="button" onClick={this.onClickRegister}>Register</RegisterButton>
+                    </Form.Field>
+                </LoginForm>
+            </div>
         );
     }
 }
 
-export default Login
+const mapStateToProps = (state) => {
+	return {
+        login: state.login
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginFunction: (data) => dispatch(login(data))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login)

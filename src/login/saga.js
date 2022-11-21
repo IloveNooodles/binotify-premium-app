@@ -2,10 +2,10 @@ import { call, put, takeLatest } from '@redux-saga/core/effects'
 
 import { LOGIN, LOGOUT } from './actionTypes'
 import * as actions from './action'
-import { loginAPI } from './api'
+import { callLogin } from './api'
 
 function* login(action) {
-    const response = yield call(loginAPI, action.payload)
+    const response = yield call(callLogin, action.payload)
     if (response) {
         yield put(actions.loginSuccess(response))
     }
@@ -15,7 +15,7 @@ function* login(action) {
 }
 
 function* logout(action) {
-    
+    const response = yield call(calLogout, action.payload)
 }
 
 const loginSaga = [

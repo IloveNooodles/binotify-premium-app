@@ -10,6 +10,8 @@ const rootReducer = combineReducers({
 
 const sagaMiddleware = createSagaMiddleware();
 
-export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+const enhancers = applyMiddleware(sagaMiddleware)
 
-sagaMiddleware.run(rootSaga);
+export const store = createStore(rootReducer, enhancers)
+
+sagaMiddleware.run(rootSaga)
