@@ -49,6 +49,7 @@
 
 body {
   font-family: CircularStd;
+  background-color: var(--clr-background-highlight-one);
 }
 
 * {
