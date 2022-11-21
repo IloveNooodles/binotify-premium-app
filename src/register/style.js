@@ -12,7 +12,7 @@ export const GreenButton = styled('button')`
     }
 `
 
-export const LoginButton = styled(GreenButton)`
+export const RegisterButton = styled(GreenButton)`
     margin-top: 60px;
     width: 100%;
     padding: 15px 0;
@@ -21,7 +21,7 @@ export const LoginButton = styled(GreenButton)`
 
 `
 
-export const RegisterButton = styled(GreenButton)`
+export const LoginButton = styled(GreenButton)`
     margin-top: 35px;
     width: 100%;
     padding: 15px 0;
@@ -57,4 +57,16 @@ export const RegisterInput = styled('input')`
     font-family: CircularStd;
     border: none;
     border-radius: var(--radius-lg);
+`
+
+export const RegisterFailedLabel = styled('label')`
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 15px;
+    padding: 0 10px;
+    color: var(--clr-text-danger);
+    z-index: 1;
+    display: block;
+    position: absolute;
+    color: var(--clr-text-danger);
 `

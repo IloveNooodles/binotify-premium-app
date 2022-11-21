@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { RegisterButton, LoginButton, RegisterForm, RegisterInput } from "./style";
+import { RegisterButton, LoginButton, RegisterForm, RegisterInput, RegisterFailedLabel } from "./style";
 import { BlurredBackgroundImage } from "../common/components/components";
-// import { login } from './action'
+import { register, registerFailure } from './action'
 
 
 class Register extends React.Component {
@@ -19,15 +19,106 @@ class Register extends React.Component {
     }
 
     onClickRegister = () => {
-        window.location.href = "/register";
+        if (this.state.password !== this.state.confirmPassword) {
+            this.props.registerFailureFunction("Password and Confirm Password do not match", 1);
+            return;
+        }
+        if (this.state.email === "" || this.state.username === "" || this.state.name === "" || this.state.password === "" || this.state.confirmPassword === "") {
+            this.props.registerFailureFunction("Please fill out all fields", 1);
+            return;
+        }
+        this.props.registerFunction({
+            name: this.state.name,
+            username: this.state.username,
+            password: this.state.password,
+            email: this.state.email
+        })
     }
 
     onClickLogin = () => {
-        window.location.href = "/";
+        window.location.href = "/login";
     }
 
     render() {
-        return (
+        var res = (
+            <div>
+                <BlurredBackgroundImage src="/images/background.jpg"/>
+                <RegisterForm>
+                    <h3 style={({
+                        'fontSize': '32px',
+                        'fontWeight': '500',
+                        'lineHeight': '42px',
+                        'textAlign': 'center'
+                        })}>Register</h3>
+                    <div>
+                        <RegisterInput
+                            required
+                            type="text"
+                            placeholder="Email"
+                            id="email"
+                            name="email"
+                            value={this.state.email}
+                            onChange={(e) => this.setState({ email: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <RegisterInput
+                            required
+                            type="text"
+                            placeholder="Username"
+                            id="username"
+                            name="username"
+                            value={this.state.username}
+                            onChange={(e) => this.setState({ username: e.target.value })}
+
+                        />
+                    </div>
+                    <div>
+                        <RegisterInput
+                            required
+                            type="text"
+                            placeholder="Full Name"
+                            id="name"
+                            name="name"
+                            value={this.state.name}
+                            onChange={(e) => this.setState({ name: e.target.value })}
+
+                        />
+                    </div>
+                    <div>
+                        <RegisterInput
+                            required
+                            type="password"
+                            placeholder="Password"
+                            id="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={(e) => this.setState({ password: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <RegisterInput
+                            required
+                            type="password"
+                            placeholder="Confirm Password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            value={this.state.confirmPassword}
+                            onChange={(e) => this.setState({ confirmPassword: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <RegisterButton type="button" onClick={this.onClickRegister}>Register</RegisterButton>
+                    </div>
+                    <div>
+                        <LoginButton type="button" onClick={this.onClickLogin}>Already have an account?</LoginButton>
+                    </div>
+                </RegisterForm>
+            </div>
+        )
+
+        if (this.props.error_code) {
+            res = (
             <div>
                 <BlurredBackgroundImage src="/images/background.jpg"/>
                 <RegisterForm>
@@ -89,27 +180,34 @@ class Register extends React.Component {
                             onChange={(e) => this.setState({ confirmPassword: e.target.value })}
                         />
                     </div>
+                    <RegisterFailedLabel>
+                        {this.props.message}
+                    </RegisterFailedLabel>
                     <div>
-                        <LoginButton type="button" onClick={this.onClickRegister}>Register</LoginButton>
+                        <RegisterButton type="button" onClick={this.onClickRegister}>Register</RegisterButton>
                     </div>
                     <div>
-                        <RegisterButton type="button" onClick={this.onClickLogin}>Already have an account?</RegisterButton>
+                        <LoginButton type="button" onClick={this.onClickLogin}>Already have an account?</LoginButton>
                     </div>
                 </RegisterForm>
             </div>
-        );
+            )
+        }
+        return res;
     }
 }
 
 const mapStateToProps = (state) => {
 	return {
-        // login: state.login
+        error_code: state.register.error_code,
+        message: state.register.message,
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // loginFunction: (data) => dispatch(login(data))
+        registerFunction: (data) => dispatch(register(data)),
+        registerFailureFunction: (message, error_code) => dispatch(registerFailure(message, error_code)),
     }
 }
 
