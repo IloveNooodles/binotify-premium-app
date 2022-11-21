@@ -1,4 +1,3 @@
-import { Form, Input } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 export const GreenButton = styled('button')`
@@ -29,7 +28,7 @@ export const RegisterButton = styled(GreenButton)`
     font-weight: 300;
 `
 
-export const LoginForm = styled(Form)`
+export const LoginForm = styled('form')`
     height: 550px;
     width: 400px;
     background-color: var(--clr-background-base);

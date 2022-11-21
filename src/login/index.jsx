@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 import { LoginButton, RegisterButton, LoginForm, LoginInput } from "./style";
@@ -8,9 +7,12 @@ import { login } from './action'
 
 
 class Login extends React.Component {
-    state = {
-        username: "",
-        password: "",
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: "",
+        }
     }
 
     onClickLogin = () => {
@@ -33,7 +35,7 @@ class Login extends React.Component {
                         'lineHeight': '42px',
                         'textAlign': 'center'
                         })}>Binotify Premium</h3>
-                    <Form.Field>
+                    <div>
                         <LoginInput
                             type="text"
                             placeholder="Username"
@@ -43,8 +45,8 @@ class Login extends React.Component {
                             onChange={(e) => this.setState({ username: e.target.value })}
 
                         />
-                    </Form.Field>
-                    <Form.Field>
+                    </div>
+                    <div>
                         <LoginInput
                             type="password"
                             placeholder="Password"
@@ -53,13 +55,13 @@ class Login extends React.Component {
                             value={this.state.password}
                             onChange={(e) => this.setState({ password: e.target.value })}
                         />
-                    </Form.Field>
-                    <Form.Field>
+                    </div>
+                    <div>
                         <LoginButton type="button" onClick={this.onClickLogin}>Log In</LoginButton>
-                    </Form.Field>
-                    <Form.Field>
+                    </div>
+                    <div>
                         <RegisterButton type="button" onClick={this.onClickRegister}>Register</RegisterButton>
-                    </Form.Field>
+                    </div>
                 </LoginForm>
             </div>
         );

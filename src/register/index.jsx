@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 import { RegisterButton, LoginButton, RegisterForm, RegisterInput } from "./style";
@@ -8,12 +7,15 @@ import { BlurredBackgroundImage } from "../common/components/components";
 
 
 class Register extends React.Component {
-    state = {
-        email: "",
-        username: "",
-        name: "",
-        password: "",
-        confirmPassword: "",
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: "",
+            username: "",
+            name: "",
+            password: "",
+            confirmPassword: "",
+        }
     }
 
     onClickRegister = () => {
@@ -35,7 +37,7 @@ class Register extends React.Component {
                         'lineHeight': '42px',
                         'textAlign': 'center'
                         })}>Register</h3>
-                    <Form.Field>
+                    <div>
                         <RegisterInput
                             type="text"
                             placeholder="Email"
@@ -44,8 +46,8 @@ class Register extends React.Component {
                             value={this.state.email}
                             onChange={(e) => this.setState({ email: e.target.value })}
                         />
-                    </Form.Field>
-                    <Form.Field>
+                    </div>
+                    <div>
                         <RegisterInput
                             type="text"
                             placeholder="Username"
@@ -55,8 +57,8 @@ class Register extends React.Component {
                             onChange={(e) => this.setState({ username: e.target.value })}
 
                         />
-                    </Form.Field>
-                    <Form.Field>
+                    </div>
+                    <div>
                         <RegisterInput
                             type="text"
                             placeholder="Full Name"
@@ -66,8 +68,8 @@ class Register extends React.Component {
                             onChange={(e) => this.setState({ name: e.target.value })}
 
                         />
-                    </Form.Field>
-                    <Form.Field>
+                    </div>
+                    <div>
                         <RegisterInput
                             type="password"
                             placeholder="Password"
@@ -76,8 +78,8 @@ class Register extends React.Component {
                             value={this.state.password}
                             onChange={(e) => this.setState({ password: e.target.value })}
                         />
-                    </Form.Field>
-                    <Form.Field>
+                    </div>
+                    <div>
                         <RegisterInput
                             type="password"
                             placeholder="Confirm Password"
@@ -86,13 +88,13 @@ class Register extends React.Component {
                             value={this.state.confirmPassword}
                             onChange={(e) => this.setState({ confirmPassword: e.target.value })}
                         />
-                    </Form.Field>
-                    <Form.Field>
+                    </div>
+                    <div>
                         <LoginButton type="button" onClick={this.onClickRegister}>Register</LoginButton>
-                    </Form.Field>
-                    <Form.Field>
+                    </div>
+                    <div>
                         <RegisterButton type="button" onClick={this.onClickLogin}>Already have an account?</RegisterButton>
-                    </Form.Field>
+                    </div>
                 </RegisterForm>
             </div>
         );
