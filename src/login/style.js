@@ -57,3 +57,15 @@ export const LoginInput = styled('input')`
     border: none;
     border-radius: var(--radius-lg);
 `
+
+export const LoginFailedLabel = styled('label')`
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 15px;
+    padding: 0 10px;
+    color: var(--clr-text-danger);
+    z-index: 1;
+    display: block;
+    position: absolute;
+    color: var(--clr-text-danger);
+`

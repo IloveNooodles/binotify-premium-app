@@ -14,8 +14,6 @@ export function registerReducer(state = initialState, action) {
                 message: REGISTER_SUCCESS
             }
         case REGISTER_FAILURE:
-            console.log("ini error code", action.payload.error_code)
-            console.log("ini message error", action.payload.message)
             return {
                 ...state,
                 error_code: action.payload.error_code,

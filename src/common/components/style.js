@@ -83,3 +83,33 @@ export const UserButton = styled('button')`
         display: inline-block;      
     }
 `
+
+export const UserMenu = styled('div')`
+    display: none;
+    background-color: var(--clr-background-highlight-one);
+    min-width: 160px;
+    z-index: 3;
+
+    &.show {
+        display: inherit;
+        position: absolute;
+        bottom: 4.5rem;
+    }
+`
+
+export const UserMenuItem = styled('button')`
+    color: var(--clr-text-secondary);
+    padding: 12px 16px;
+    display: block;
+    background: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    font-size: var(--fs-heading);
+    text-align: left;
+    font-family: var(--ff-main);
+
+    &:hover {
+        background-color: var(--clr-background-highlight-two);
+        color: var(--clr-text-primary);
+`
