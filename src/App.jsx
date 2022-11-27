@@ -7,6 +7,7 @@ import Login from './login'
 import Register from './register'
 import Home from './home'
 import { storage } from './common/storage'
+import InsertSong from './insertSong'
 
 function App() {
 	if (storage.getToken() !== null) {
@@ -15,6 +16,8 @@ function App() {
 				<BrowserRouter>
 					<Routes>
 						<Route index element={<Home />} />
+						<Route path="/addsong" element={<InsertSong />} />
+						<Route path="*" element={<Home />} />
 					</Routes>
 				</BrowserRouter>
 			</Provider>
@@ -26,6 +29,7 @@ function App() {
 				<Routes>
 					<Route index element={<Login />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="*" element={<Login />} />
 				</Routes>
 			</BrowserRouter>
 		</Provider>

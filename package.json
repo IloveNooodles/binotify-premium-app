@@ -9,12 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "is-core": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "redux": "^4.2.0",
     "redux-saga": "^1.2.1",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.3",
     "styled-components": "^5.3.6",
     "wretch": "^2.1.5"
   },

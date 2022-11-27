@@ -11,12 +11,23 @@ class SidebarMenu extends React.Component {
         document.getElementById("user-button-arrow").classList.toggle("down");
     }
 
+    componentDidMount() {
+        if (window.location.pathname === "/") {
+            document.getElementById("home-link").classList.add("active");
+            document.getElementById("home-link").style.pointerEvents = "none";
+        }
+        else if (window.location.pathname === "/addsong") {
+            document.getElementById("addsong-link").classList.add("active");
+            document.getElementById("addsong-link").style.pointerEvents = "none";
+        }
+    }
+
     render() {
         return (
             <MenuBar style={{width: '15rem'}}>
                 <MenuBarHeader>Binotify Premium</MenuBarHeader>
-                <MenuBarLinks href='#'>Your Songs</MenuBarLinks>
-                <MenuBarLinks href='#'>Add Song</MenuBarLinks>
+                <MenuBarLinks id='home-link' href='/'>Your Songs</MenuBarLinks>
+                <MenuBarLinks disabled id='addsong-link' href='/addsong'>Add Song</MenuBarLinks>
                 <UserButton onClick={this.showUserMenu}>
                     <img src="/images/avatar-template.jpeg" alt="user"/>
                     <p>User</p>

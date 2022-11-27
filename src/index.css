@@ -49,32 +49,33 @@
 
 body {
   font-family: CircularStd;
-  background-color: var(--clr-background-highlight-one);
+  background-color: var(--clr-background-highlight-one) !important;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
   z-index: 0;
   font-family: var(--ff-main);
 }
 
 h1 {
-  font-size: var(--fs-album-title-pc);
-  color: var(--clr-text-primary);
-  font-weight: 500;
-  letter-spacing: 0.1rem;
-  margin: 2rem;
+  font-size: var(--fs-album-title-pc) !important;
+  color: var(--clr-text-primary) !important;
+  letter-spacing: 0.1rem !important;
+  margin: 2rem !important;
+  margin-left: 0 !important;
+  margin-bottom: 0.5rem !important;
 }
 
 h2 {
-  font-size: var(--fs-album-subtitle-pc);
-  color: var(--clr-text-primary);
-  font-weight: 500;
-  letter-spacing: 0.1rem;
-  margin: 2rem 50px;
+  font-size: var(--fs-album-subtitle-pc) !important;
+  color: var(--clr-text-primary) !important;
+  letter-spacing: 0.1rem !important;
+  margin: 2rem 50px !important;
+  margin-left: 0 !important;
 }
 
 h3 {
@@ -152,4 +153,23 @@ button {
 .down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+/* Semantic UI Overloading  */
+.ui.menu .item {
+  color: var(--clr-text-secondary) !important;
+}
+
+.ui.menu {
+  display: block;
+  float: right;
+}
+
+.ui.menu .item:hover {
+  color: var(--clr-text-primary) !important;
+  transition: var(--transition) !important;
+}
+
+.ui.menu .item.active {
+  color: var(--clr-text-primary) !important;
 }
