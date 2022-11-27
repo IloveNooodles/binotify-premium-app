@@ -29,7 +29,7 @@ export const RegisterButton = styled(GreenButton)`
 `
 
 export const LoginForm = styled('form')`
-    height: 550px;
+    height: 500px;
     width: 400px;
     background-color: var(--clr-background-base);
     position: absolute;

@@ -46,7 +46,7 @@ class Register extends React.Component {
                 <RegisterForm>
                     <h3 style={({
                         'fontSize': '32px',
-                        'fontWeight': '500',
+                        'fontFamily': 'CircularStd',
                         'lineHeight': '42px',
                         'textAlign': 'center'
                         })}>Register</h3>
@@ -124,7 +124,7 @@ class Register extends React.Component {
                 <RegisterForm>
                     <h3 style={({
                         'fontSize': '32px',
-                        'fontWeight': '500',
+                        'fontFamily': 'CircularStd',
                         'lineHeight': '42px',
                         'textAlign': 'center'
                         })}>Register</h3>

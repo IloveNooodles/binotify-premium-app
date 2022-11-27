@@ -35,7 +35,7 @@ class Login extends React.Component {
                 <LoginForm>
                     <h3 style={({
                         'fontSize': '32px',
-                        'fontWeight': '500',
+                        'fontFamily': 'CircularStd',
                         'lineHeight': '42px',
                         'textAlign': 'center'
                         })}>Binotify Premium</h3>
@@ -77,7 +77,7 @@ class Login extends React.Component {
                     <LoginForm>
                         <h3 style={({
                             'fontSize': '32px',
-                            'fontWeight': '500',
+                            'fontFamily': 'CircularStd',
                             'lineHeight': '42px',
                             'textAlign': 'center'
                             })}>Binotify Premium</h3>
