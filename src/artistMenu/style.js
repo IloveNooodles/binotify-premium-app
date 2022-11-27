@@ -20,13 +20,25 @@ export const SongList = styled('table')`
         padding-bottom: 12px;
         text-align: left;
         border-bottom: 1px solid var(--clr-background-highlight-three);
-    }      
     }
     & tr.content {
         transition: var(--transition);
     }
     & tr.content:hover {
         background-color: var(--clr-background-highlight-two);
+    }     
+    
+    & .songTitle {
+        color: var(--clr-text-primary);
+        font-weight: bold;
+    }
+    & .manage {
+        display: flex;
+        align-items: baseline;
+    }
+    & .manage p:hover {
+        color: var(--clr-text-primary);
         cursor: pointer;
-    }      
+        transition: var(--transition);
+    }
 `

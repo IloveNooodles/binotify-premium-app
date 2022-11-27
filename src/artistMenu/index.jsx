@@ -1,7 +1,11 @@
 import React from 'react';
+import { Pagination } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css'
 
 import { SongList } from './style';
-import SidebarMenu from '../common/components/sidebar';
+import DeleteConfirmation from '../common/components/deleteConfirmation';
+import SongForm from '../common/components/songForm';
+import { DarkBackground } from '../common/components/style';
 
 class ArtistMenu extends React.Component {
     constructor(props) {
@@ -10,6 +14,9 @@ class ArtistMenu extends React.Component {
             artist: null,
             loading: true,
             error: null,
+            page: 1,
+            deleteId: null,
+            editSong: null,
         };
     }
 
@@ -31,6 +38,24 @@ class ArtistMenu extends React.Component {
     //     .catch(error => this.setState({ error, loading: false }));
     // }
 
+    deleteSong = (url) => {
+        this.setState({deleteId: url});
+        document.getElementById("delete-confirmation-background").classList.toggle("show");
+        document.getElementById("delete-confirmation-box").classList.toggle("show");
+    }
+
+    editSong = (url) => {
+        this.setState({editSong: url});
+        document.getElementById("insert-song-form").classList.toggle("show");
+        document.getElementById("dark-background").classList.toggle("show");
+    }
+
+    closeEditSong = () => {
+        this.setState({editSong: null});
+        document.getElementById("insert-song-form").classList.toggle("show");
+        document.getElementById("dark-background").classList.toggle("show");
+    }
+
     render() {
         const { loading, error } = this.state;
         // if (loading) {
@@ -40,10 +65,16 @@ class ArtistMenu extends React.Component {
         // } else {
             return (
                 <div>
+                    <DeleteConfirmation songid={this.state.deleteId}/>
+                    <DarkBackground id='dark-background' onClick={this.closeEditSong}/>
+                    <SongForm title='Edit Song Details' buttontext='Update Song'/>
                     <div style={{  
                         margin: '50px 100px',
                         marginLeft: '20rem',
+                        width: 'auto',
                         }}>
+                        <h1>Artist Menu</h1>
+                        <h3>Here are songs made by you</h3>
                         <SongList>
                             <tbody>
                                 <tr>
@@ -54,15 +85,24 @@ class ArtistMenu extends React.Component {
                                 </tr>
                                 <tr className="content" name="$id">
                                     <td>1</td>
-                                    <td>Cukup Siti Khodijah</td>
+                                    <td className='songTitle'>Cukup Siti Khodijah</td>
                                     <td>10/10/2000</td>
-                                    <td name="/album/delete_song?song_id=$id" className="remove-song-from-album-button">
-                                        Edit
-                                        Delete
+                                    <td className="manage">
+                                        <p songid={"0"} style={{marginRight:"1rem"}} onClick={(e) => this.editSong(e.target.getAttribute('songid'))}>Edit</p>
+                                        <p songid={"0"} onClick={(e) => this.deleteSong(e.target.getAttribute('songid'))}>Delete</p>
                                     </td>
                                 </tr>
                             </tbody>
                         </SongList>
+                        <Pagination
+                            activePage={this.state.page}
+                            firstItem={null}
+                            lastItem={null}
+                            pointing
+                            secondary
+                            totalPages={10}
+                            onPageChange={(e, { activePage }) => this.setState({ page: activePage })}
+                        />
                     </div>
                 </div>
             );
