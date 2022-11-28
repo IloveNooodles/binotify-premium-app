@@ -1,7 +1,7 @@
 import React from "react"
 import { DeleteConfirmationModal } from "./style"
 
-class DeleteConfirmation extends React.Component {
+class ConfirmationModal extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -11,18 +11,23 @@ class DeleteConfirmation extends React.Component {
         document.getElementById("delete-confirmation-box").classList.toggle("show");
     }
 
-    deleteOnClick = () => {
-        console.log(this.props.songid);
-    }
-
     render() {
         return (
         <DeleteConfirmationModal id="delete-confirmation-background">
             <div className="confirmation-box" id="delete-confirmation-box">
-                <p className="confirmation-text">Are you sure you want to delete this?</p>
+                <p className="confirmation-text">Are you sure you want to {this.props.type} this?</p>
                 <div className="footer">
-                    <button className="btn btn-cancel" onClick={this.cancelOnClick}>Cancel</button>
-                    <button className="btn btn-danger" onClick={this.deleteOnClick}>Delete</button>
+                    { this.props.type === 'delete' ?
+                    <div>
+                        <button className="btn btn-cancel" onClick={this.cancelOnClick}>Cancel</button>
+                        <button className="btn btn-danger" onClick={this.props.acceptfunction}>Delete</button>
+                    </div> 
+                    :
+                    <div>
+                        <button className="btn btn-danger" onClick={this.cancelOnClick}>Cancel</button>
+                        <button className="btn btn-cancel" onClick={this.props.acceptfunction}>Yes</button> 
+                    </div>
+                    }
                 </div>
             </div>
         </DeleteConfirmationModal>
@@ -30,4 +35,4 @@ class DeleteConfirmation extends React.Component {
     }
 }
 
-export default DeleteConfirmation
+export default ConfirmationModal
