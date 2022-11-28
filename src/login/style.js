@@ -17,7 +17,6 @@ export const LoginButton = styled(GreenButton)`
     width: 100%;
     padding: 15px 0;
     font-size: 14px;
-    font-weight: 300;
 `
 
 export const RegisterButton = styled(GreenButton)`
@@ -25,7 +24,6 @@ export const RegisterButton = styled(GreenButton)`
     width: 100%;
     padding: 15px 0;
     font-size: 14px;
-    font-weight: 300;
 `
 
 export const LoginForm = styled('form')`

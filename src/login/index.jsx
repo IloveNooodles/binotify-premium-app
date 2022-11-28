@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { LoginButton, RegisterButton, LoginForm, LoginInput, LoginFailedLabel } from "./style";
 import { BlurredBackgroundImage } from "../common/components/components";
-import { login, loginFailure } from './action'
+import { login, loginFailure } from '../common/auth/action'
 
 
 class Login extends React.Component {
@@ -122,8 +122,8 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-        error_code: state.login.error_code,
-        message: state.login.message,
+        error_code: state.auth.error_code,
+        message: state.auth.message,
 	}
 }
 

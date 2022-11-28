@@ -3,9 +3,10 @@ import { Pagination } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 
 import { SongList } from './style';
-import DeleteConfirmation from '../common/components/deleteConfirmation';
+import ConfirmationModal from '../common/components/deleteConfirmation';
 import SongForm from '../common/components/songForm';
 import { DarkBackground } from '../common/components/style';
+import Sidebar from '../common/components/sidebar';
 
 class ArtistMenu extends React.Component {
     constructor(props) {
@@ -38,19 +39,19 @@ class ArtistMenu extends React.Component {
     //     .catch(error => this.setState({ error, loading: false }));
     // }
 
-    deleteSong = (url) => {
+    deleteSongModal = (url) => {
         this.setState({deleteId: url});
         document.getElementById("delete-confirmation-background").classList.toggle("show");
         document.getElementById("delete-confirmation-box").classList.toggle("show");
     }
 
-    editSong = (url) => {
+    editSongModal = (url) => {
         this.setState({editSong: url});
         document.getElementById("insert-song-form").classList.toggle("show");
         document.getElementById("dark-background").classList.toggle("show");
     }
 
-    closeEditSong = () => {
+    closeEditSongModal = () => {
         this.setState({editSong: null});
         document.getElementById("insert-song-form").classList.toggle("show");
         document.getElementById("dark-background").classList.toggle("show");
@@ -65,8 +66,9 @@ class ArtistMenu extends React.Component {
         // } else {
             return (
                 <div>
-                    <DeleteConfirmation songid={this.state.deleteId}/>
-                    <DarkBackground id='dark-background' onClick={this.closeEditSong}/>
+                    <Sidebar/>
+                    <ConfirmationModal type='delete' acceptfunction={() => this.props.deleteSongFunction}/>
+                    <DarkBackground id='dark-background' onClick={this.closeEditSongModal}/>
                     <SongForm title='Edit Song Details' buttontext='Update Song'/>
                     <div style={{  
                         margin: '50px 100px',
@@ -88,8 +90,8 @@ class ArtistMenu extends React.Component {
                                     <td className='songTitle'>Cukup Siti Khodijah</td>
                                     <td>10/10/2000</td>
                                     <td className="manage">
-                                        <p songid={"0"} style={{marginRight:"1rem"}} onClick={(e) => this.editSong(e.target.getAttribute('songid'))}>Edit</p>
-                                        <p songid={"0"} onClick={(e) => this.deleteSong(e.target.getAttribute('songid'))}>Delete</p>
+                                        <p songid={"0"} style={{marginRight:"1rem"}} onClick={(e) => this.editSongModal(e.target.getAttribute('songid'))}>Edit</p>
+                                        <p songid={"0"} onClick={(e) => this.deleteSongModal(e.target.getAttribute('songid'))}>Delete</p>
                                     </td>
                                 </tr>
                             </tbody>
