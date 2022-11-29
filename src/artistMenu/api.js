@@ -14,3 +14,17 @@ export const callGetSongs = (data) => {
 		}
 	)
 }
+
+export const callDeleteSong = (data) => {
+    return wretch()
+        .url(import.meta.env.VITE_REST_API_URL + '/premium-song/' + data)
+        .headers({'x-api-key': storage.getToken()})
+        .delete()
+        .error(401, (error) => {
+            return (JSON.parse(error.message))
+        })
+        .json((response) => {
+            return response
+        }
+    )
+}

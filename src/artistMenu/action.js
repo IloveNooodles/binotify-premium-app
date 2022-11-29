@@ -1,4 +1,4 @@
-import { GET_SONGS, UPDATE_SONGS, LOADING } from "./actionTypes";
+import { GET_SONGS, UPDATE_SONGS, DELETE_SONG } from "./actionTypes";
 
 export function getSongs(limit, page) {
     return {
@@ -17,9 +17,9 @@ export function updateSongs(songs) {
     }
 }
 
-export function loading() {
+export function deleteSong(songId) {
     return {
-        type: LOADING,
-        payload: []
+        type: DELETE_SONG,
+        payload: songId
     }
 }

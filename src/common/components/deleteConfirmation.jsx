@@ -6,9 +6,14 @@ class ConfirmationModal extends React.Component {
         super(props)
     }
 
-    cancelOnClick = () => {
+    closeModal = () => {
         document.getElementById("delete-confirmation-background").classList.toggle("show");
         document.getElementById("delete-confirmation-box").classList.toggle("show");
+    }
+
+    acceptFunction = () => {
+        this.props.acceptfunction()
+        this.closeModal()
     }
 
     render() {
@@ -19,13 +24,13 @@ class ConfirmationModal extends React.Component {
                 <div className="footer">
                     { this.props.type === 'delete' ?
                     <div>
-                        <button className="btn btn-cancel" onClick={this.cancelOnClick}>Cancel</button>
-                        <button className="btn btn-danger" onClick={this.props.acceptfunction}>Delete</button>
+                        <button className="btn btn-cancel" onClick={this.closeModal}>Cancel</button>
+                        <button className="btn btn-danger" onClick={this.acceptFunction}>Delete</button>
                     </div> 
                     :
                     <div>
-                        <button className="btn btn-danger" onClick={this.cancelOnClick}>Cancel</button>
-                        <button className="btn btn-cancel" onClick={this.props.acceptfunction}>Yes</button> 
+                        <button className="btn btn-danger" onClick={this.closeModal}>Cancel</button>
+                        <button className="btn btn-cancel" onClick={this.acceptFunction}>Yes</button> 
                     </div>
                     }
                 </div>

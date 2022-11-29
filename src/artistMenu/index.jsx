@@ -8,7 +8,7 @@ import ConfirmationModal from '../common/components/deleteConfirmation';
 import SongForm from '../common/components/songForm';
 import { DarkBackground } from '../common/components/style';
 import Sidebar from '../common/components/sidebar';
-import { getSongs } from './action';
+import { getSongs, deleteSong } from './action';
 
 class ArtistMenu extends React.Component {
     constructor(props) {
@@ -40,6 +40,10 @@ class ArtistMenu extends React.Component {
         })
     }
 
+    deleteSongOnClick = () => {
+        this.props.deleteSongFunction(this.state.deleteId)
+    }
+
     editSongModal = (id, title) => {
         this.setState({editSongId: id, editSongName: title}, () => {
             document.getElementById("insert-song-form").classList.toggle("show");
@@ -60,7 +64,7 @@ class ArtistMenu extends React.Component {
             return (
                 <div>
                     <Sidebar/>
-                    <ConfirmationModal type='delete' acceptfunction={() => this.props.deleteSongFunction}/>
+                    <ConfirmationModal type='delete' acceptfunction={this.deleteSongOnClick}/>
                     <DarkBackground id='dark-background' onClick={this.closeEditSongModal}/>
                     <SongForm id='song-form-component' title='Edit Song Details' buttontext='Update Song' value={this.state.editSongName}/>
                     <div style={{  
@@ -115,7 +119,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getSongsFunction: (limit, page) => dispatch(getSongs(limit, page))
+        getSongsFunction: (limit, page) => dispatch(getSongs(limit, page)),
+        deleteSongFunction: (songId) => dispatch(deleteSong(songId))
     }
 }
 
