@@ -12,7 +12,7 @@ export const SongList = styled('table')`
         color: var(--clr-text-secondary);
         font-weight: lighter;
         font-size: small;
-        padding: 1.5rem 10px;
+        padding: 1.25rem 10px;
         padding-right: 0;
     }
     & th {

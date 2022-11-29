@@ -7,6 +7,13 @@ class SongForm extends React.Component {
         this.state = {
             error: null,
             message: null,
+            name: this.props.value
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.value !== prevProps.value) {
+            this.setState({name: this.props.value})
         }
     }
 
@@ -26,7 +33,7 @@ class SongForm extends React.Component {
             return (
                 <InsertSongForm id="insert-song-form" encType="multipart/form-data">
                     <h3>{this.props.title}</h3>
-                    <input type="text" placeholder="Title" id="judul" name="judul"/>
+                    <input type="text" placeholder="Title" id="judul" name="judul" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
                     <h4>Song Audio</h4>
                     <input type="file" id="song" name="song" accept="audio/*"/>
                     <label className="sumbit-failure">{this.state.message}</label>
@@ -37,7 +44,7 @@ class SongForm extends React.Component {
         return (
             <InsertSongForm id="insert-song-form" encType="multipart/form-data">
                 <h3>{this.props.title}</h3>
-                <input type="text" placeholder="Title" id="judul" name="judul"/>
+                <input type="text" placeholder="Title" id="judul" name="judul" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
                 <h4>Song Audio</h4>
                 <input type="file" id="song" name="song" accept="audio/*"/>
                 <button type="button" className="btn primary submit-btn" onClick={this.submit}>{this.props.buttontext}</button>

@@ -5,10 +5,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {registerReducer} from '../register/reducer'
 import rootSaga from './saga'
 import { authReducer } from './auth/reducer';
+import { artistMenuReducer } from '../artistMenu/reducer';
 
 const rootReducer = combineReducers({
         register: registerReducer,
         auth: authReducer,
+        artistMenu: artistMenuReducer
     })
 
 const sagaMiddleware = createSagaMiddleware();
