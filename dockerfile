@@ -9,8 +9,8 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 10000
 
 RUN yarn build
 
-CMD [ "yarn", "preview", "--port", "3000" ]
+CMD [ "yarn", "preview", "--host", "--port",  "10000" ]

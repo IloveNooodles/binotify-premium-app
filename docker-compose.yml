@@ -1,11 +1,11 @@
 version: "3.9"
 services:
-  binotify-premium:
-    hostname: binotify-premium
+  binotify-premium-app:
+    container_name: binotify-premium-app
+    hostname: binotify-premium-app
     build: .
     env_file: .env
-    container_name: binotify-premium
     ports:
-      - "10000:3000"
+      - "10000:10000"
     volumes:
       - ./src:/app/src
