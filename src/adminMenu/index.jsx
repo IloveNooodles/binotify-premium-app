@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import Sidebar from "../common/components/sidebar"
 import ConfirmationModal from "../common/components/deleteConfirmation"
 import { SubscriptionList } from "./style"
-import { acceptRequest, getRequests } from "./action"
+import { acceptRequest, rejectRequest, getRequests } from "./action"
 
 class AdminMenu extends React.Component {
     constructor(props) {
@@ -56,7 +56,7 @@ class AdminMenu extends React.Component {
                     <ConfirmationModal type={this.state.modalMessage} acceptfunction={
                         this.state.modalMessage === "accept" ?
                         () => this.props.acceptRequestFunction(this.state.clickedCreatorId, this.state.clickedMemberId) :
-                        () => this.props.rejectSubscriptionFunction(this.state.clickedMemberId, this.state.clickedCreatorId)
+                        () => this.props.rejectRequestFunction(this.state.clickedCreatorId, this.state.clickedMemberId)
                         }/>
                     <Sidebar/>
                     <div style={{  
@@ -117,6 +117,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getRequestsFunction: (limit, page) => dispatch(getRequests(limit, page)),
         acceptRequestFunction: (creatorid, memberid) => dispatch(acceptRequest(creatorid, memberid)),
+        rejectRequestFunction: (creatorid, memberid) => dispatch(rejectRequest(creatorid, memberid))
     }
 }
 

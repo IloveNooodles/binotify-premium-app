@@ -31,3 +31,20 @@ export const callAcceptRequest = (data) => {
         }
     )
 }
+
+export const callRejectRequest = (data) => {
+    return wretch()
+        .url(import.meta.env.VITE_REST_API_URL + '/subscription/decision')
+        .headers({'x-api-key': storage.getToken()})
+        .post(JSON.stringify(data))
+        .error(401, (error) => {
+            window.location.href = '/'
+        })
+        .error(400, (error) => {
+            return (JSON.parse(error.message))
+        })
+        .json((response) => {
+            return response
+        }
+    )
+}

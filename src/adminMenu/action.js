@@ -28,6 +28,17 @@ export function acceptRequest(singer_id, subscription_id) {
     }
 }
 
+export function rejectRequest(singer_id, subscription_id) {
+    return {
+        type: ACCEPT_REQUEST,
+        payload: {
+            singer_id,
+            subscription_id,
+            status: 'REJECTED'
+        }
+    }
+}
+
 export function desicionRequestFailed(message, error_code) {
     return {
         type: DESICION_REQUEST_FAILED,
