@@ -31,6 +31,9 @@ class ArtistMenu extends React.Component {
         if (this.state.page !== prevState.page) {
             this.props.getSongsFunction(10,this.state.page)
         }
+        else if (this.props.songs.page !== this.state.page) {
+            this.setState({page: this.props.songs.page})
+        }
         if (this.props.error_code !== prevProps.error_code) {
             if (this.props.error_code === '-1') {
                 this.closeEditSongModal()
