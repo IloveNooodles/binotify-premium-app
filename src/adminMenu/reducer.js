@@ -1,4 +1,4 @@
-import { UPDATE_REQUESTS } from "./actionTypes";
+import { UPDATE_REQUESTS, DESICION_REQUEST_FAILED } from "./actionTypes";
 
 const initialState = {
     requests: [],
@@ -13,6 +13,13 @@ export function adminMenuReducer(state = initialState, action) {
             return {
                 ...state,
                 requests: action.payload,
+                loading: false
+            }
+        case DESICION_REQUEST_FAILED:
+            return {
+                ...state,
+                error_code: action.payload.error_code,
+                message: action.payload.message,
                 loading: false
             }
         default:

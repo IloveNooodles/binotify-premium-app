@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import Sidebar from "../common/components/sidebar"
 import ConfirmationModal from "../common/components/deleteConfirmation"
 import { SubscriptionList } from "./style"
-import { getRequests } from "./action"
+import { acceptRequest, getRequests } from "./action"
 
 class AdminMenu extends React.Component {
     constructor(props) {
@@ -55,7 +55,7 @@ class AdminMenu extends React.Component {
                 <div>
                     <ConfirmationModal type={this.state.modalMessage} acceptfunction={
                         this.state.modalMessage === "accept" ?
-                        () => this.props.acceptSubscriptionFunction(this.state.clickedMemberId, this.state.clickedCreatorId) :
+                        () => this.props.acceptRequestFunction(this.state.clickedCreatorId, this.state.clickedMemberId) :
                         () => this.props.rejectSubscriptionFunction(this.state.clickedMemberId, this.state.clickedCreatorId)
                         }/>
                     <Sidebar/>
@@ -70,8 +70,8 @@ class AdminMenu extends React.Component {
                             <tbody>
                                 <tr>
                                     <th>#</th>
-                                    <th>Subscriber Id</th>
-                                    <th>Artist Id</th>
+                                    <th>SUBSCRIBER ID</th>
+                                    <th>ARTIST ID</th>
                                     <th>MANAGE</th>
                                 </tr>
                                 {this.props.requests.pending_subscription_list.map((request, index) => (
@@ -115,7 +115,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getRequestsFunction: (limit, page) => dispatch(getRequests(limit, page))
+        getRequestsFunction: (limit, page) => dispatch(getRequests(limit, page)),
+        acceptRequestFunction: (creatorid, memberid) => dispatch(acceptRequest(creatorid, memberid)),
     }
 }
 

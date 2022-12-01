@@ -7,7 +7,7 @@ export const callGetRequests = (data) => {
         .headers({'x-api-key': storage.getToken()})
 		.get()
 		.error(401, (error) => {
-            return (JSON.parse(error.message))
+            window.location.href = '/'
         })
 		.json((response) => {
 			return response
@@ -17,10 +17,13 @@ export const callGetRequests = (data) => {
 
 export const callAcceptRequest = (data) => {
     return wretch()
-        .url(import.meta.env.VITE_REST_API_URL + '/subcription/decision')
+        .url(import.meta.env.VITE_REST_API_URL + '/subscription/decision')
         .headers({'x-api-key': storage.getToken()})
         .post(JSON.stringify(data))
         .error(401, (error) => {
+            window.location.href = '/'
+        })
+        .error(400, (error) => {
             return (JSON.parse(error.message))
         })
         .json((response) => {

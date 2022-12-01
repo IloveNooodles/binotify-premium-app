@@ -1,4 +1,4 @@
-import { GET_REQUESTS, UPDATE_REQUESTS, ACCEPT_REQUEST, REJECT_REQUEST } from "./actionTypes";
+import { GET_REQUESTS, UPDATE_REQUESTS, ACCEPT_REQUEST, DESICION_REQUEST_FAILED } from "./actionTypes";
 
 export function getRequests(limit, page) {
     return {
@@ -17,22 +17,23 @@ export function updateRequests(requests) {
     }
 }
 
-export function acceptRequest(creatorId, subscriberId) {
+export function acceptRequest(singer_id, subscription_id) {
     return {
         type: ACCEPT_REQUEST,
         payload: {
-            creatorId,
-            subscriberId
+            singer_id,
+            subscription_id,
+            status: 'ACCEPTED'
         }
     }
 }
 
-export function rejectRequest(creatorId, subscriberId) {
+export function desicionRequestFailed(message, error_code) {
     return {
-        type: REJECT_REQUEST,
+        type: DESICION_REQUEST_FAILED,
         payload: {
-            creatorId,
-            subscriberId
+            message,
+            error_code
         }
     }
 }
