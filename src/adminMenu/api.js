@@ -18,7 +18,7 @@ export const callGetRequests = (data) => {
 export const callAcceptRequest = (data) => {
     return wretch()
         .url(import.meta.env.VITE_REST_API_URL + '/subscription/decision')
-        .headers({'x-api-key': storage.getToken()})
+        .headers({'x-api-key': storage.getToken(), 'Content-Type': 'application/json'})
         .post(JSON.stringify(data))
         .error(401, (error) => {
             window.location.href = '/'
@@ -35,7 +35,7 @@ export const callAcceptRequest = (data) => {
 export const callRejectRequest = (data) => {
     return wretch()
         .url(import.meta.env.VITE_REST_API_URL + '/subscription/decision')
-        .headers({'x-api-key': storage.getToken()})
+        .headers({'x-api-key': storage.getToken(), 'Content-Type': 'application/json'})
         .post(JSON.stringify(data))
         .error(401, (error) => {
             window.location.href = '/'
