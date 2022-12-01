@@ -19,17 +19,18 @@ class ArtistMenu extends React.Component {
             page: 1,
             deleteId: null,
             editSongId: null,
-            editSongName: ''
+            editSongName: '',
+            limitPage: 10,
         };
     }
 
     componentDidMount = () => {
-        this.props.getSongsFunction(10,this.state.page)
+        this.props.getSongsFunction(this.state.limitPage, this.state.page)
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.page !== prevState.page) {
-            this.props.getSongsFunction(10,this.state.page)
+            this.props.getSongsFunction(this.state.limitPage, this.state.page)
         }
         else if (this.props.songs.page !== this.state.page) {
             this.setState({page: this.props.songs.page})

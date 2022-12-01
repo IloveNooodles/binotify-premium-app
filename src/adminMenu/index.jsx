@@ -14,17 +14,18 @@ class AdminMenu extends React.Component {
             page: 1,
             modalMessage: null,
             clickedMemberId: null,
-            clickedCreatorId: null
+            clickedCreatorId: null,
+            limitPage: 10,
         }
     }
 
     componentDidMount = () => {
-        this.props.getRequestsFunction(10, this.state.page)
+        this.props.getRequestsFunction(this.state.limitPage, this.state.page)
     }
 
     componentDidUpdate(_, prevState) {
         if (this.state.page !== prevState.page) {
-            this.props.getRequestsFunction(10, this.state.page)
+            this.props.getRequestsFunction(this.state.limitPage, this.state.page)
         } else if (this.props.requests.page !== this.state.page) {
             this.setState({ page: this.props.requests.page })
         }
