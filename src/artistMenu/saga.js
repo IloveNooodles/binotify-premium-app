@@ -1,8 +1,8 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, take, takeLatest } from 'redux-saga/effects';
 
-import { DELETE_SONG, GET_SONGS } from "./actionTypes";
+import { DELETE_SONG, GET_SONGS, UPDATE_SONG } from "./actionTypes";
 import * as actions from './action'
-import { callGetSongs, callDeleteSong } from './api';
+import { callGetSongs, callDeleteSong, callUpdateSong } from './api';
 
 function* getSongs(action) {
     const response = yield call(callGetSongs, action.payload)
@@ -21,9 +21,20 @@ function* deleteSong(action) {
     }
 }
 
+function* updateSong(action) {
+    const response = yield call(callUpdateSong, action.payload)
+    if (response.status === 'OK') {
+        yield put(actions.getSongs(10, 1))
+        yield put(actions.successUpdateSong())
+    } else {
+        yield put(actions.failedUpdateSong(response.data.message, response.data.error_code))
+    }
+}
+
 const artistMenuSaga = [
     takeLatest(GET_SONGS, getSongs),
-    takeLatest(DELETE_SONG, deleteSong)
+    takeLatest(DELETE_SONG, deleteSong),
+    takeLatest(UPDATE_SONG, updateSong)
 ]
 
 export default artistMenuSaga

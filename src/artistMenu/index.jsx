@@ -8,7 +8,7 @@ import ConfirmationModal from '../common/components/deleteConfirmation';
 import SongForm from '../common/components/songForm';
 import { DarkBackground } from '../common/components/style';
 import Sidebar from '../common/components/sidebar';
-import { getSongs, deleteSong } from './action';
+import { getSongs, deleteSong, updateSong, resetUpdateSongError } from './action';
 
 class ArtistMenu extends React.Component {
     constructor(props) {
@@ -27,9 +27,15 @@ class ArtistMenu extends React.Component {
         this.props.getSongsFunction(10,this.state.page)
     }
 
-    componentDidUpdate(_, prevState) {
+    componentDidUpdate(prevProps, prevState) {
         if (this.state.page !== prevState.page) {
             this.props.getSongsFunction(10,this.state.page)
+        }
+        if (this.props.error_code !== prevProps.error_code) {
+            if (this.props.error_code === '-1') {
+                this.closeEditSongModal()
+                this.props.resetUpdateSongErrorFunction()
+            }
         }
     }
 
@@ -57,6 +63,15 @@ class ArtistMenu extends React.Component {
         document.getElementById("dark-background").classList.toggle("show");
     }
 
+    editSongOnClick = (songData) => {
+        let song = {
+            songId: this.state.editSongId,
+            songData
+        }
+        this.props.editSongFunction(song)
+        document.getElementById('song').value = ''
+    }
+
     render() {
         if (this.props.loading) {
             return <div>Loading...</div>;
@@ -66,12 +81,19 @@ class ArtistMenu extends React.Component {
                     <Sidebar/>
                     <ConfirmationModal type='delete' acceptfunction={this.deleteSongOnClick}/>
                     <DarkBackground id='dark-background' onClick={this.closeEditSongModal}/>
-                    <SongForm id='song-form-component' title='Edit Song Details' buttontext='Update Song' value={this.state.editSongName}/>
+                    <SongForm
+                        id='song-form-component'
+                        title='Edit Song Details'
+                        buttontext='Update Song'
+                        value={this.state.editSongName}
+                        acceptfunction={(songData) => this.editSongOnClick(songData)}
+                        error={{message: this.props.message, error_code: this.props.error_code}}
+                    />
                     <div style={{  
                         margin: '50px 100px',
                         marginLeft: '20rem',
                         width: 'auto',
-                        }}>
+                    }}>
                         <h1>Artist Menu</h1>
                         <h3>Here are songs made by you</h3>
                         <SongList>
@@ -113,14 +135,18 @@ class ArtistMenu extends React.Component {
 const mapStateToProps = (state) => {
 	return {
         songs: state.artistMenu.songs,
-        loading: state.artistMenu.loading
+        loading: state.artistMenu.loading,
+        error_code: state.artistMenu.error_code,
+        message: state.artistMenu.message
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getSongsFunction: (limit, page) => dispatch(getSongs(limit, page)),
-        deleteSongFunction: (songId) => dispatch(deleteSong(songId))
+        deleteSongFunction: (songId) => dispatch(deleteSong(songId)),
+        editSongFunction: (songData) => dispatch(updateSong(songData)),
+        resetUpdateSongErrorFunction: () => dispatch(resetUpdateSongError())
     }
 }
 

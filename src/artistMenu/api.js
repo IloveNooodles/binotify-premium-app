@@ -28,3 +28,13 @@ export const callDeleteSong = (data) => {
         }
     )
 }
+
+export const callUpdateSong = (data) => {
+    return fetch(import.meta.env.VITE_REST_API_URL + '/premium-song/' + data.songId, {
+        method: "PUT",
+        headers: {'x-api-key': storage.getToken()},
+        body: data.songData
+    }).then(async r =>
+        {return r.json()}
+        )
+}
