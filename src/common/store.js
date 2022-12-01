@@ -7,11 +7,13 @@ import rootSaga from './saga'
 import { authReducer } from './auth/reducer';
 import { artistMenuReducer } from '../artistMenu/reducer';
 import { insertSongReducer } from '../insertSong/reducer';
+import { adminMenuReducer } from '../adminMenu/reducer';
 
 const rootReducer = combineReducers({
         register: registerReducer,
         auth: authReducer,
         artistMenu: artistMenuReducer,
+        adminMenu: adminMenuReducer,
         insertSong: insertSongReducer
     })
 

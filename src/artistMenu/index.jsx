@@ -107,7 +107,7 @@ class ArtistMenu extends React.Component {
                                     <th>MANAGE</th>
                                 </tr>
                                 {this.props.songs.premium_song.map((song, index) => (
-                                <tr key={song.id} className="content" name="$id">
+                                <tr key={song.id} className="content">
                                     <td>{index+1}</td>
                                     <td className='songTitle'>{song.title}</td>
                                     <td className="manage">

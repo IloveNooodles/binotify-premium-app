@@ -1,4 +1,5 @@
 import {all} from 'redux-saga/effects'
+import adminMenuSaga from '../adminMenu/saga';
 import artistMenuSaga from '../artistMenu/saga';
 import insertSongSaga from '../insertSong/saga';
 
@@ -10,6 +11,7 @@ export default function* rootSaga() {
         ...registerSaga,
         ...authSaga,
         ...artistMenuSaga,
+        ...adminMenuSaga,
         ...insertSongSaga
     ]);
 }

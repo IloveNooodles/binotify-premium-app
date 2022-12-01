@@ -12,7 +12,7 @@ export const SubscriptionList = styled('table')`
         color: var(--clr-text-secondary);
         font-weight: lighter;
         font-size: small;
-        padding: 1.5rem 10px;
+        padding: 1.25rem 10px;
         padding-right: 0;
     }
     & th {
@@ -35,5 +35,10 @@ export const SubscriptionList = styled('table')`
         color: var(--clr-text-primary);
         cursor: pointer;
         transition: var(--transition);
+    }
+
+    & .tableTitle {
+        color: var(--clr-text-primary);
+        font-weight: bold;
     }
 `
