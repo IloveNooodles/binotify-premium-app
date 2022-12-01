@@ -16,14 +16,18 @@ function* getRequests(action) {
 
 function* acceptRequest(action) {
     const response = yield call(callAcceptRequest, action.payload)
-    if (response.status !== 'OK') {
+    if (response.status === 'OK') {
+        yield put(actions.getRequests(10, 1))
+    } else {
         yield put(actions.desicionRequestFailed(response.data.message, response.data.error_code))
     }
 }
 
 function* rejectRequest(action) {
     const response = yield call(callRejectRequest, action.payload)
-    if (response.status !== 'OK') {
+    if (response.status === 'OK') {
+        yield put(actions.getRequests(10, 1))
+    } else {
         yield put(actions.desicionRequestFailed(response.data.message, response.data.error_code))
     }
 }
