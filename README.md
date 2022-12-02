@@ -11,7 +11,12 @@ Made with ? with
 |      Arik Rayi Arkananta       | 13520048 |
 
 ## Screenshot
-
+![image.png](./public/images/image.png)
+![image1.png](./public/images/image1.png)
+![image-1.png](./public/images/image-1.png)
+![image-2.png](./public/images/image-2.png)
+![image-3.png](./public/images/image-3.png)
+![image-4.png](./public/images/image-4.png)
 
 ## User Functionality
 
