@@ -17,6 +17,8 @@ Made with ? with
 ![image-2.png](./public/images/image-2.png)
 ![image-3.png](./public/images/image-3.png)
 ![image-4.png](./public/images/image-4.png)
+![image-1.png](./public/images/image-6.png)
+![image.png](./public/images//image-5.png)
 
 ## User Functionality
 
